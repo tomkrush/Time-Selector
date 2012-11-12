@@ -1,0 +1,1 @@
+This is a plugin I created in 2009 for personal projects. I will probably rewrite this in the future.
