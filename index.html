@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>Date Entry</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" src="jquery.timeselector.js"></script>
+		<script type="text/javascript">
+
+		$(document).ready(function() {
+			$('#eventStartTime').timeSelector({
+				adjust: $('#eventEndTime'),
+				adjustType: 'hour',
+			});
+
+			$('#eventEndTime').timeSelector({
+				adjust: $('#eventStartTime'),
+				adjustType: 'hour',
+				adjustValue: -1
+			});
+			
+			$('#custom').timeSelector({
+				format: 'm/d/Y'
+			});
+
+			$('#custom2').timeSelector({
+				format: 'h:ia',
+				timestamp: new Date()
+			});
+			
+			var format = "m/d/Y h:ia";
+			
+			$('#format_selector').timeSelector({
+				format: format
+			});
+			
+			$('#format').val(format);
+			
+			$('#format').blur(function() {
+				$.timeSelector.change_format($('#format_selector'), $('#format').val());
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<h1>Time Selector</h1>
+		<p>This plugin turns input fields into time selectors. The concept is borrowed from the iCal time stamp formatter. Each field has many keyboard shortcuts to enable a better experience. The left and right arrow switch the currently focused subfield. The up and down arrows increment the time up or down. The mousewheel also allows the user to navigate through time. The keypad may also be used to manually enter the time.</p>
+		<p>The formatter allows for a flexible set of controls. By default the format 'm/d/Y h:ia' is used.</p>
+		<form action="" method="post">
+			<h3>Time selector's working together</h3>
+			<input name="eventStartTime" id="eventStartTime" type="text" ref="1250134034" />
+			<input name="eventEndTime" id="eventEndTime" type="text" ref="1252815720" />
+			<h3>Custom formats</h3>
+			<input name="custom" id="custom" type="text" />
+			<input name="custom2" id="custom2" type="text" ref="1252815720" />
+			<h3>Custom Format String</h3>
+			<input name="format" id="format" type="text" />
+			<input name="format_selector" id="format_selector" type="text" ref="1252815720" />
+		</form>
+	</body>
+</html>
